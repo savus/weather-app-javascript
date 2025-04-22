@@ -74,9 +74,16 @@ body {
   width: 1rem;
 }
 
+.weather {
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-25);
+  align-items: center;
+  padding-top: var(--size-40);
+}
+
 .weather .weather-icon {
   width: 10.625rem;
-  padding: var(--size-35) 0;
   font-size: 5.625rem;
 }
 
@@ -93,6 +100,22 @@ body {
 .details {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 0 var(--size-20);
+  justify-content: space-evenly;
+  gap: var(--size-60);
+}
+
+.col {
+  display: flex;
+  align-items: center;
+  text-align: left;
+}
+
+.col i {
+  margin-right: var(--size-10);
+  font-size: var(--size-40);
+}
+
+.humidity,
+.wind {
+  font-size: var(--size-30);
 }
