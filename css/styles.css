@@ -90,9 +90,42 @@ body {
 .weather h1 {
   font-size: 5rem;
   font-weight: 500;
+  position: relative;
+  display: flex;
+  align-items: start;
+  gap: var(--size-20);
 }
 
-.weather h2 {
+.weather h1 .units-selection-container {
+  font-size: 1rem;
+  margin-top: var(--size-10);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  padding: var(--size-10);
+  border-radius: var(--size-10);
+  cursor: pointer;
+}
+
+.units-selection {
+  display: none;
+}
+
+.units-selection .option {
+  color: #000;
+  width: 100%;
+  padding: var(--size-20);
+}
+
+.units-selection .option:nth-child(2) {
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+}
+
+.units-selection .option:hover {
+  background-color: black;
+  color: #fff;
+}
+
+.units-selection .weather h2 {
   font-size: 2.81rem;
   font-weight: 400;
 }

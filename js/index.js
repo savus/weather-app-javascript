@@ -3,6 +3,11 @@ const tempDisplay = document.querySelector(".temp");
 const humidityDisplay = document.querySelector(".humidity");
 const windDisplay = document.querySelector(".wind");
 
+const unitContainerSelector = ".units-selection-container";
+const unitSelectionContainer = document.querySelector(unitContainerSelector);
+const unitSelectionSelector = ".units-selection";
+const unitSelectionOptions = document.querySelector(unitSelectionSelector);
+
 const apiKey = `34b0eca3b26480797180859fc2e45272`;
 
 const searchBox = document.querySelector(".search input");
@@ -26,13 +31,32 @@ async function checkWeather(
     name,
     main: { temp, humidity },
     wind: { speed },
+    weather: [{ main, description, icon }],
   } = data;
 
-  console.log(data);
+  console.log(main, description, icon);
   cityDisplay.innerHTML = name;
   tempDisplay.innerHTML = Math.round(temp);
   humidityDisplay.innerHTML = humidity;
   windDisplay.innerHTML = speed;
 }
 
-checkWeather();
+// checkWeather();
+
+unitSelectionContainer.addEventListener("click", (e) => {
+  const child = e.target.children[0];
+  if (child.classList.contains("active")) {
+    child.classList.remove("active");
+    child.style.display = "block";
+  } else {
+    child.classList.add("active");
+    child.style.display = "none";
+  }
+});
+
+unitSelectionOptions.addEventListener("click", ({ target }) => {
+  const isOption = target.dataset.option;
+  if (isOption) {
+    cityDisplay.innerHTML = target.dataset.option;
+  }
+});
