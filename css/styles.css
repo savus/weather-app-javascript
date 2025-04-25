@@ -87,26 +87,66 @@ body {
   font-size: 5.625rem;
 }
 
+.weather .temp-container {
+  display: flex;
+  gap: var(--size-20);
+}
+
 .weather h1 {
   font-size: 5rem;
   font-weight: 500;
   position: relative;
-  display: flex;
-  align-items: start;
-  gap: var(--size-20);
 }
 
-.weather h1 .units-selection-container {
+.weather .units-selection-container {
+  --border-opacity: 1;
+  --bg-opacity: 0;
+  --transition-dur: 0.1s;
+  height: 100%;
   font-size: 1rem;
   margin-top: var(--size-10);
-  border: 1px solid rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(255, 255, 255, var(--border-opacity));
   padding: var(--size-10);
   border-radius: var(--size-10);
   cursor: pointer;
+  background-color: rgba(255, 255, 255, var(--bg-opacity));
+  transition: background-color var(--transition-dur) ease-in,
+    border var(--transition-dur) ease-in, color var(--transition-dur) ease-in;
+  user-select: none;
+  position: relative;
+}
+
+.weather .units-selection-container:hover,
+.weather .units-selection-container.active {
+  --border-opacity: 0.8;
+  --bg-opacity: 0.5;
+  color: #000;
+}
+
+.weather .units-selection-container:active {
+  --bg-opacity: 1;
+  color: #000;
+  transition: all 0s;
 }
 
 .units-selection {
-  display: none;
+  --transition-dur: 0.2s;
+  --scale: 0;
+  /* display: none; */
+  position: absolute;
+  background-color: #fff;
+  border-radius: var(--size-10);
+  top: 110%;
+  width: 100%;
+  left: 0%;
+  overflow: hidden;
+  transform: scale(var(--scale));
+  transition: transform var(--transition-dur) ease-in-out;
+  transform-origin: top center;
+}
+
+.weather .units-selection-container.active .units-selection {
+  --scale: 1;
 }
 
 .units-selection .option {

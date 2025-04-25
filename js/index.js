@@ -1,3 +1,5 @@
+const active = "active";
+
 const cityDisplay = document.querySelector(".city");
 const tempDisplay = document.querySelector(".temp");
 const humidityDisplay = document.querySelector(".humidity");
@@ -13,11 +15,20 @@ const apiKey = `34b0eca3b26480797180859fc2e45272`;
 const searchBox = document.querySelector(".search input");
 const searchBtn = document.querySelector(".search button");
 
-searchBox.addEventListener("change", (e) => {});
+const setActive = (target, selector = null) => {
+  const selectedElement = document.querySelector(`${selector}${active}`);
+  if (selectedElement !== null) removeActive(selectedElement);
+  target.classList.add(active);
+};
 
-searchBtn.addEventListener("click", () => {
-  checkWeather(searchBox.value);
-});
+const toggleActive = (target, selector = null) => {
+  if (target.classList.contains(active)) removeActive(target, selector);
+  else setActive(target);
+};
+
+const removeActive = (element) => {
+  element.classList.remove(active);
+};
 
 async function checkWeather(
   selectedCity = "Bangalore",
@@ -34,7 +45,7 @@ async function checkWeather(
     weather: [{ main, description, icon }],
   } = data;
 
-  console.log(main, description, icon);
+  console.log(data);
   cityDisplay.innerHTML = name;
   tempDisplay.innerHTML = Math.round(temp);
   humidityDisplay.innerHTML = humidity;
@@ -43,15 +54,14 @@ async function checkWeather(
 
 // checkWeather();
 
-unitSelectionContainer.addEventListener("click", (e) => {
-  const child = e.target.children[0];
-  if (child.classList.contains("active")) {
-    child.classList.remove("active");
-    child.style.display = "block";
-  } else {
-    child.classList.add("active");
-    child.style.display = "none";
-  }
+searchBox.addEventListener("change", (e) => {});
+
+searchBtn.addEventListener("click", () => {
+  // checkWeather(searchBox.value);
+});
+
+unitSelectionContainer.addEventListener("click", ({ target }) => {
+  toggleActive(target);
 });
 
 unitSelectionOptions.addEventListener("click", ({ target }) => {
@@ -59,4 +69,9 @@ unitSelectionOptions.addEventListener("click", ({ target }) => {
   if (isOption) {
     cityDisplay.innerHTML = target.dataset.option;
   }
+});
+
+document.addEventListener("click", ({ target }) => {
+  const isSelectionContainer = target === unitSelectionContainer;
+  if (!isSelectionContainer) removeActive(unitSelectionContainer);
 });
