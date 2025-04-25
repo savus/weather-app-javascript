@@ -149,6 +149,10 @@ body {
   --scale: 1;
 }
 
+.units-selection-container .units-display {
+  pointer-events: none;
+}
+
 .units-selection .option {
   color: #000;
   width: 100%;
