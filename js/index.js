@@ -14,19 +14,22 @@ const unitSelectionOptions = document.querySelector(unitSelectionSelector);
 const unitsDisplaySelector = ".units-display";
 const unitsDisplay = document.querySelector(unitsDisplaySelector);
 
-const weatherSettings = {
+let weatherSettings = {
   cityName: "new york",
   units: "imperial",
 };
 
 const apiKey = `34b0eca3b26480797180859fc2e45272`;
-let apiUrl = `https://api.openweathermap.org/data/2.5/weather?units=${weatherSettings.units}&q=${weatherSettings.cityName}&appid=${apiKey}`;
+let currentWeatherUrl;
 
 const searchBox = document.querySelector(".search input");
 const searchBtn = document.querySelector(".search button");
 
-const setUrl = (settings) => {
-  apiUrl = `https://api.openweathermap.org/data/2.5/weather?units=${settings.units}&q=${settings.cityName}&appid=${apiKey}`;
+const setWeatherSettings = (settings) => {
+  weatherSettings = { ...weatherSettings, ...settings };
+};
+const setCurrentWeatherUrl = ({ units, cityName }) => {
+  currentWeatherUrl = `https://api.openweathermap.org/data/2.5/weather?units=${units}&q=${cityName}&appid=${apiKey}`;
 };
 
 const setActive = (target, selector = null) => {
@@ -67,21 +70,29 @@ const updateUnitsDisplay = ({ units }) =>
     units.slice(0, 1).toUpperCase() + units.slice(1)
   }`);
 
+const fetchCurrentWeather = async (settings) => {
+  setCurrentWeatherUrl(settings);
+  return fetch(currentWeatherUrl).then((response) => response.json());
+};
+
 async function updateWeather(settings) {
-  setUrl(settings);
-  const response = await fetch(apiUrl);
-  const data = await response.json();
+  // setUrl(settings);
+  // const response = await fetch(apiUrl);
+  // const data = await response.json();
+  const currentWeatherData = await fetchCurrentWeather(settings);
 
   const {
     name,
     main: { temp, humidity },
     wind: { speed },
     weather: [{ main, description }],
-  } = data;
+  } = currentWeatherData;
 
   const tempUnit = settings.units === "imperial" ? "F" : "C";
   const speedUnit = settings.units === "imperial" ? "mph" : "km/h";
   const iconClass = getWeatherIcon(main);
+
+  updateUnitsDisplay(settings);
 
   cityDisplay.innerHTML = name;
   tempDisplay.innerHTML = `${Math.round(temp)}°${tempUnit}`;
@@ -93,12 +104,12 @@ async function updateWeather(settings) {
 }
 
 updateWeather(weatherSettings);
-updateUnitsDisplay(weatherSettings);
 
-searchBox.addEventListener("change", (e) => {});
+searchBox.addEventListener("change", ({ target }) => {});
 
 searchBtn.addEventListener("click", () => {
-  // checkWeather(searchBox.value);
+  setWeatherSettings({ cityName: searchBox.value });
+  updateWeather(weatherSettings);
 });
 
 unitSelectionContainer.addEventListener("click", ({ target }) => {
@@ -110,7 +121,6 @@ unitSelectionOptions.addEventListener("click", ({ target }) => {
   if (isOption) {
     weatherSettings.units = target.dataset.option;
     updateWeather(weatherSettings);
-    updateUnitsDisplay(weatherSettings);
   }
 });
 
