@@ -80,12 +80,13 @@ async function updateWeather(settings) {
   } = data;
 
   const tempUnit = settings.units === "imperial" ? "F" : "C";
+  const speedUnit = settings.units === "imperial" ? "mph" : "km/h";
   const iconClass = getWeatherIcon(main);
 
   cityDisplay.innerHTML = name;
   tempDisplay.innerHTML = `${Math.round(temp)}°${tempUnit}`;
-  humidityDisplay.innerHTML = humidity;
-  windDisplay.innerHTML = speed;
+  humidityDisplay.innerHTML = `${humidity}%`;
+  windDisplay.innerHTML = `${speed} ${speedUnit}`;
 
   clearWeatherIcons();
   weatherIcon.classList.add(iconClass);
@@ -107,7 +108,9 @@ unitSelectionContainer.addEventListener("click", ({ target }) => {
 unitSelectionOptions.addEventListener("click", ({ target }) => {
   const isOption = target.dataset.option;
   if (isOption) {
-    cityDisplay.innerHTML = target.dataset.option;
+    weatherSettings.units = target.dataset.option;
+    updateWeather(weatherSettings);
+    updateUnitsDisplay(weatherSettings);
   }
 });
 
