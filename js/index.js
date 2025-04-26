@@ -1,6 +1,8 @@
 const active = "active";
 const weatherIcons = ["fa-cloud-rain", "fa-cloud", "fa-sun"];
 
+const weatherContainerSelector = ".weather";
+const weatherContainer = document.querySelector(weatherContainerSelector);
 const cityDisplay = document.querySelector(".city");
 const tempDisplay = document.querySelector(".temp");
 const humidityDisplay = document.querySelector(".humidity");
@@ -14,7 +16,7 @@ const unitSelectionOptions = document.querySelector(unitSelectionSelector);
 const unitsDisplaySelector = ".units-display";
 const unitsDisplay = document.querySelector(unitsDisplaySelector);
 
-let weatherSettings = {
+const weatherSettings = {
   cityName: "new york",
   units: "imperial",
 };
@@ -26,8 +28,12 @@ const searchBox = document.querySelector(".search input");
 const searchBtn = document.querySelector(".search button");
 
 const setWeatherSettings = (settings) => {
-  weatherSettings = { ...weatherSettings, ...settings };
+  for (const prop in settings) {
+    const value = settings[prop];
+    weatherSettings[prop] = value;
+  }
 };
+
 const setCurrentWeatherUrl = ({ units, cityName }) => {
   currentWeatherUrl = `https://api.openweathermap.org/data/2.5/weather?units=${units}&q=${cityName}&appid=${apiKey}`;
 };
@@ -70,27 +76,24 @@ const updateUnitsDisplay = ({ units }) =>
     units.slice(0, 1).toUpperCase() + units.slice(1)
   }`);
 
-const fetchCurrentWeather = async (settings) => {
-  setCurrentWeatherUrl(settings);
-  return fetch(currentWeatherUrl).then((response) => response.json());
-};
+const fetchCurrentWeather = () =>
+  fetch(currentWeatherUrl).then((response) => {
+    return response.json();
+  });
 
-async function updateWeather(settings) {
-  // setUrl(settings);
-  // const response = await fetch(apiUrl);
-  // const data = await response.json();
-  const currentWeatherData = await fetchCurrentWeather(settings);
-
+const updateDataFields = (data, settings) => {
   const {
     name,
     main: { temp, humidity },
     wind: { speed },
     weather: [{ main, description }],
-  } = currentWeatherData;
+  } = data;
 
   const tempUnit = settings.units === "imperial" ? "F" : "C";
   const speedUnit = settings.units === "imperial" ? "mph" : "km/h";
   const iconClass = getWeatherIcon(main);
+
+  setActive(weatherContainer);
 
   updateUnitsDisplay(settings);
 
@@ -101,6 +104,18 @@ async function updateWeather(settings) {
 
   clearWeatherIcons();
   weatherIcon.classList.add(iconClass);
+};
+
+async function updateWeather(settings) {
+  setCurrentWeatherUrl(settings);
+  const currentWeatherData = await fetchCurrentWeather();
+
+  if (currentWeatherData.cod === 200) {
+    updateDataFields(currentWeatherData, settings);
+  } else {
+    removeActive(weatherContainer);
+    console.log(currentWeatherData.message);
+  }
 }
 
 updateWeather(weatherSettings);

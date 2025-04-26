@@ -75,11 +75,15 @@ body {
 }
 
 .weather {
-  display: flex;
+  display: none;
   flex-direction: column;
   gap: var(--size-25);
   align-items: center;
   padding-top: var(--size-40);
+}
+
+.weather.active {
+  display: flex;
 }
 
 .weather .weather-icon {
