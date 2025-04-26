@@ -16,6 +16,8 @@ const unitSelectionOptions = document.querySelector(unitSelectionSelector);
 const unitsDisplaySelector = ".units-display";
 const unitsDisplay = document.querySelector(unitsDisplaySelector);
 
+const cityNameErrorMessage = document.querySelector(".city-name-error");
+
 const weatherSettings = {
   cityName: "new york",
   units: "imperial",
@@ -61,6 +63,8 @@ const getWeatherIcon = (status) => {
       return "fa-cloud";
     case "Clear":
       return "fa-sun";
+    default:
+      return "fa-sun";
   }
 };
 
@@ -77,9 +81,7 @@ const updateUnitsDisplay = ({ units }) =>
   }`);
 
 const fetchCurrentWeather = () =>
-  fetch(currentWeatherUrl).then((response) => {
-    return response.json();
-  });
+  fetch(currentWeatherUrl).then((response) => response.json());
 
 const updateDataFields = (data, settings) => {
   const {
@@ -93,7 +95,9 @@ const updateDataFields = (data, settings) => {
   const speedUnit = settings.units === "imperial" ? "mph" : "km/h";
   const iconClass = getWeatherIcon(main);
 
+  console.log(main);
   setActive(weatherContainer);
+  removeActive(cityNameErrorMessage);
 
   updateUnitsDisplay(settings);
 
@@ -108,13 +112,18 @@ const updateDataFields = (data, settings) => {
 
 async function updateWeather(settings) {
   setCurrentWeatherUrl(settings);
-  const currentWeatherData = await fetchCurrentWeather();
-
-  if (currentWeatherData.cod === 200) {
-    updateDataFields(currentWeatherData, settings);
-  } else {
+  let currentWeatherData;
+  try {
+    currentWeatherData = await fetchCurrentWeather();
+    if (currentWeatherData.cod === 200) {
+      updateDataFields(currentWeatherData, settings);
+    } else {
+      removeActive(weatherContainer);
+      setActive(cityNameErrorMessage);
+      console.log(currentWeatherData.message);
+    }
+  } catch (e) {
     removeActive(weatherContainer);
-    console.log(currentWeatherData.message);
   }
 }
 

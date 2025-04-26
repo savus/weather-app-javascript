@@ -74,16 +74,30 @@ body {
   width: 1rem;
 }
 
+.city-name-error {
+  display: none;
+  color: #ffffff;
+  background-color: rgba(255, 0, 0, 0.8);
+  border-radius: var(--size-10);
+  padding: var(--size-10) 0 var(--size-10) 0;
+  font-size: var(--size-20);
+  margin-top: var(--size-18);
+}
+
 .weather {
   display: none;
   flex-direction: column;
   gap: var(--size-25);
   align-items: center;
-  padding-top: var(--size-40);
+  padding-top: var(--size-18);
 }
 
 .weather.active {
   display: flex;
+}
+
+.city-name-error.active {
+  display: block;
 }
 
 .weather .weather-icon {
