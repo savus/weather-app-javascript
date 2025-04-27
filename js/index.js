@@ -1,5 +1,9 @@
 import Requests from "./api.js";
-import { removeActive, updateWeather } from "./helper-functions.js";
+import {
+  removeActive,
+  toggleActive,
+  updateWeather,
+} from "./helper-functions.js";
 
 export const active = "active";
 export const weatherIcons = ["fa-cloud-rain", "fa-cloud", "fa-sun"];

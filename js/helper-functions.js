@@ -64,7 +64,7 @@ export const updateDataFields = (data, settings) => {
   const speedUnit = settings.units === "imperial" ? "mph" : "km/h";
   const iconClass = getWeatherIcon(main);
 
-  console.log(main);
+  console.log(data);
   setActive(weatherContainer);
   removeActive(cityNameErrorMessage);
 
