@@ -1,3 +1,5 @@
+import Requests from "./api.js";
+
 const active = "active";
 const weatherIcons = ["fa-cloud-rain", "fa-cloud", "fa-sun"];
 
@@ -18,27 +20,8 @@ const unitsDisplay = document.querySelector(unitsDisplaySelector);
 
 const cityNameErrorMessage = document.querySelector(".city-name-error");
 
-const weatherSettings = {
-  cityName: "new york",
-  units: "imperial",
-};
-
-const apiKey = `34b0eca3b26480797180859fc2e45272`;
-let currentWeatherUrl;
-
 const searchBox = document.querySelector(".search input");
 const searchBtn = document.querySelector(".search button");
-
-const setWeatherSettings = (settings) => {
-  for (const prop in settings) {
-    const value = settings[prop];
-    weatherSettings[prop] = value;
-  }
-};
-
-const setCurrentWeatherUrl = ({ units, cityName }) => {
-  currentWeatherUrl = `https://api.openweathermap.org/data/2.5/weather?units=${units}&q=${cityName}&appid=${apiKey}`;
-};
 
 const setActive = (target, selector = null) => {
   const selectedElement = document.querySelector(`${selector}${active}`);
@@ -80,9 +63,6 @@ const updateUnitsDisplay = ({ units }) =>
     units.slice(0, 1).toUpperCase() + units.slice(1)
   }`);
 
-const fetchCurrentWeather = () =>
-  fetch(currentWeatherUrl).then((response) => response.json());
-
 const updateDataFields = (data, settings) => {
   const {
     name,
@@ -111,10 +91,10 @@ const updateDataFields = (data, settings) => {
 };
 
 async function updateWeather(settings) {
-  setCurrentWeatherUrl(settings);
+  Requests.setCurrentWeatherUrl(settings);
   let currentWeatherData;
   try {
-    currentWeatherData = await fetchCurrentWeather();
+    currentWeatherData = await Requests.fetchCurrentWeather();
     if (currentWeatherData.cod === 200) {
       updateDataFields(currentWeatherData, settings);
     } else {
@@ -127,13 +107,13 @@ async function updateWeather(settings) {
   }
 }
 
-updateWeather(weatherSettings);
+updateWeather(Requests.apiSettings);
 
 searchBox.addEventListener("change", ({ target }) => {});
 
 searchBtn.addEventListener("click", () => {
-  setWeatherSettings({ cityName: searchBox.value });
-  updateWeather(weatherSettings);
+  Requests.setApiSettings({ cityName: searchBox.value });
+  updateWeather(Requests.apiSettings);
 });
 
 unitSelectionContainer.addEventListener("click", ({ target }) => {
@@ -143,8 +123,8 @@ unitSelectionContainer.addEventListener("click", ({ target }) => {
 unitSelectionOptions.addEventListener("click", ({ target }) => {
   const isOption = target.dataset.option;
   if (isOption) {
-    weatherSettings.units = target.dataset.option;
-    updateWeather(weatherSettings);
+    Requests.apiSettings.units = target.dataset.option;
+    updateWeather(Requests.apiSettings);
   }
 });
 
