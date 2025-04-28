@@ -5,14 +5,14 @@ import {
   removeActiveOnBlur,
   toggleUnitsContainer,
 } from "./click-functions.js";
-import {
-  removeActive,
-  toggleActive,
-  updateWeather,
-} from "./helper-functions.js";
+import { updateWeather } from "./helper-functions.js";
 
 export const active = "active";
-export const weatherIcons = ["fa-cloud-rain", "fa-cloud", "fa-sun"];
+export const weatherIcons = {
+  Rain: "fa-cloud-rain",
+  Clouds: "fa-cloud",
+  Clear: "fa-sun",
+};
 
 const weatherContainerSelector = ".weather";
 export const weatherContainer = document.querySelector(

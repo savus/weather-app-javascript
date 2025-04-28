@@ -18,20 +18,21 @@
 }
 
 body {
-  background: #222;
-}
-
-.card {
-  --gradient1: #00feba;
-  --gradient2: #5b548a;
+  background: #43b4e0;
+  --gradient1: rgba(67, 180, 224, 1);
+  --gradient2: rgba(11, 18, 122, 1);
   --gradient-deg: 135deg;
-  width: 90%;
-  max-width: 29.375rem;
   background: linear-gradient(
     var(--gradient-deg),
     var(--gradient1),
     var(--gradient2)
   );
+}
+
+.card {
+  border: 1px solid #fff;
+  width: 90%;
+  max-width: 29.375rem;
   color: #fff;
   margin: var(--size-100) auto 0;
   padding: var(--size-40) var(--size-35);

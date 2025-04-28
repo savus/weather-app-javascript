@@ -28,20 +28,12 @@ export const removeActive = (element) => {
 };
 
 export const getWeatherIcon = (status) => {
-  switch (status) {
-    case "Rain":
-      return "fa-cloud-rain";
-    case "Clouds":
-      return "fa-cloud";
-    case "Clear":
-      return "fa-sun";
-    default:
-      return "fa-sun";
-  }
+  if (!weatherIcons[status]) weatherIcons[status] = "fa-sun";
+  return weatherIcons[status];
 };
 
 export const clearWeatherIcons = () => {
-  weatherIcons.forEach((string) => {
+  Object.values(weatherIcons).forEach((string) => {
     if (weatherIcon.classList.contains(string))
       weatherIcon.classList.remove(string);
   });
@@ -64,7 +56,7 @@ export const updateDataFields = (data, settings) => {
   const speedUnit = settings.units === "imperial" ? "mph" : "km/h";
   const iconClass = getWeatherIcon(main);
 
-  console.log(data);
+  console.log(main, iconClass);
   setActive(weatherContainer);
   removeActive(cityNameErrorMessage);
 
