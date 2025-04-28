@@ -40,14 +40,14 @@ body {
   text-align: center;
 }
 
-.search {
+.card .search {
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-.search input {
+.card .search input {
   color: #555;
   padding: var(--size-10) var(--size-25);
   height: var(--size-60);
@@ -57,25 +57,25 @@ body {
   font-size: var(--size-18);
 }
 
-.search input,
-.search button {
+.card .search input,
+.card .search button {
   border: 0;
   outline: 0;
   background: #ebfffc;
 }
 
-.search button {
+.card .search button {
   border-radius: 50%;
   width: var(--size-60);
   height: var(--size-60);
   cursor: pointer;
 }
 
-.search button i {
+.card .search button i {
   width: 1rem;
 }
 
-.city-name-error {
+.error-message {
   display: none;
   color: #ffffff;
   background-color: rgba(255, 0, 0, 0.8);
@@ -85,8 +85,12 @@ body {
   margin-top: var(--size-18);
 }
 
+.error-message.active {
+  display: block;
+}
+
 .weather {
-  display: none;
+  /* display: none; */
   flex-direction: column;
   gap: var(--size-25);
   align-items: center;
@@ -95,10 +99,6 @@ body {
 
 .weather.active {
   display: flex;
-}
-
-.city-name-error.active {
-  display: block;
 }
 
 .weather .weather-icon {

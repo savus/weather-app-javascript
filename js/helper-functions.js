@@ -5,7 +5,6 @@ import {
   cityNameErrorMessage,
   humidityDisplay,
   tempDisplay,
-  unitsDisplay,
   weatherContainer,
   weatherIcon,
   weatherIcons,
@@ -39,10 +38,10 @@ export const clearWeatherIcons = () => {
   });
 };
 
-export const updateUnitsDisplay = ({ units }) =>
-  (unitsDisplay.innerHTML = `Units: ${
-    units.slice(0, 1).toUpperCase() + units.slice(1)
-  }`);
+// export const updateUnitsDisplay = ({ units }) =>
+//   (unitsDisplay.innerHTML = `Units: ${
+//     units.slice(0, 1).toUpperCase() + units.slice(1)
+//   }`);
 
 export const updateDataFields = (data, settings) => {
   const {
@@ -60,7 +59,7 @@ export const updateDataFields = (data, settings) => {
   setActive(weatherContainer);
   removeActive(cityNameErrorMessage);
 
-  updateUnitsDisplay(settings);
+  // updateUnitsDisplay(settings);
 
   cityDisplay.innerHTML = name;
   tempDisplay.innerHTML = `${Math.round(temp)}°${tempUnit}`;

@@ -4,7 +4,7 @@ import {
   toggleActive,
   updateWeather,
 } from "./helper-functions.js";
-import { searchBox, unitSelectionContainer } from "./index.js";
+import { searchBox } from "./index.js";
 
 export const fetchByCityName = () => {
   console.log("success");
@@ -24,7 +24,7 @@ export const fetchByUnitOption = ({ target }) => {
   }
 };
 
-export const removeActiveOnBlur = ({ target }) => {
-  const isSelectionContainer = target === unitSelectionContainer;
-  if (!isSelectionContainer) removeActive(unitSelectionContainer);
-};
+// export const removeActiveOnBlur = ({ target }) => {
+//   const isSelectionContainer = target === unitSelectionContainer;
+//   if (!isSelectionContainer) removeActive(unitSelectionContainer);
+// };
