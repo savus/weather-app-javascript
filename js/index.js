@@ -1,5 +1,11 @@
 import Requests from "./api.js";
 import {
+  fetchByCityName,
+  fetchByUnitOption,
+  removeActiveOnBlur,
+  toggleUnitsContainer,
+} from "./click-functions.js";
+import {
   removeActive,
   toggleActive,
   updateWeather,
@@ -19,7 +25,9 @@ export const windDisplay = document.querySelector(".wind");
 export const weatherIcon = document.querySelector(".weather-icon");
 
 const unitContainerSelector = ".units-selection-container";
-const unitSelectionContainer = document.querySelector(unitContainerSelector);
+export const unitSelectionContainer = document.querySelector(
+  unitContainerSelector
+);
 const unitSelectionSelector = ".units-selection";
 const unitSelectionOptions = document.querySelector(unitSelectionSelector);
 const unitsDisplaySelector = ".units-display";
@@ -27,31 +35,19 @@ export const unitsDisplay = document.querySelector(unitsDisplaySelector);
 
 export const cityNameErrorMessage = document.querySelector(".city-name-error");
 
-const searchBox = document.querySelector(".search input");
-const searchBtn = document.querySelector(".search button");
+const searchBoxSelector = ".search input";
+export const searchBox = document.querySelector(searchBoxSelector);
+const searchBtnSelector = ".search button";
+const searchBtn = document.querySelector(searchBtnSelector);
 
 updateWeather(Requests.apiSettings);
 
 searchBox.addEventListener("change", ({ target }) => {});
 
-searchBtn.addEventListener("click", () => {
-  Requests.setApiSettings({ cityName: searchBox.value });
-  updateWeather(Requests.apiSettings);
-});
+searchBtn.addEventListener("click", fetchByCityName);
 
-unitSelectionContainer.addEventListener("click", ({ target }) => {
-  toggleActive(target);
-});
+unitSelectionContainer.addEventListener("click", toggleUnitsContainer);
 
-unitSelectionOptions.addEventListener("click", ({ target }) => {
-  const isOption = target.dataset.option;
-  if (isOption) {
-    Requests.apiSettings.units = target.dataset.option;
-    updateWeather(Requests.apiSettings);
-  }
-});
+unitSelectionOptions.addEventListener("click", fetchByUnitOption);
 
-document.addEventListener("click", ({ target }) => {
-  const isSelectionContainer = target === unitSelectionContainer;
-  if (!isSelectionContainer) removeActive(unitSelectionContainer);
-});
+document.addEventListener("click", removeActiveOnBlur);
