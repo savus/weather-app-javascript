@@ -2,7 +2,7 @@ const apiKey = `34b0eca3b26480797180859fc2e45272`;
 
 const apiSettings = {
   cityName: "new york",
-  units: "imperial",
+  units: "metric",
 };
 
 const setApiSettings = (settings) => {

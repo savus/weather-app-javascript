@@ -82,6 +82,7 @@ export async function updateWeather(settings) {
       console.log(currentWeatherData.message);
     }
   } catch (e) {
+    console.log(e);
     removeActive(weatherContainer);
   }
 }

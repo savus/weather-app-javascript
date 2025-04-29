@@ -42,7 +42,7 @@ body {
 .card {
   border: 1px solid #fff;
   width: 90%;
-  max-width: 29.375rem;
+  max-width: 40rem;
   color: #fff;
   margin: var(--size-100) auto 0;
   padding: var(--size-40) var(--size-35);
@@ -246,15 +246,23 @@ body {
 .details {
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
-  gap: var(--size-60);
+  justify-content: space-around;
   padding-top: var(--size-18);
+  width: 100%;
+  margin: auto 0;
 }
 
 .col {
   display: flex;
+  flex-direction: column;
   align-items: center;
   text-align: left;
+  width: 100%;
+}
+
+.col > div {
+  display: flex;
+  flex-wrap: nowrap;
 }
 
 .col i {
@@ -265,4 +273,15 @@ body {
 .humidity,
 .wind {
   font-size: var(--size-30);
+}
+
+@media (max-width: 450px) {
+  .search input {
+    width: 100%;
+  }
+  .search,
+  .details {
+    flex-direction: column;
+    gap: var(--size-25);
+  }
 }

@@ -35,7 +35,7 @@ export const searchBox = document.querySelector(searchBoxSelector);
 const searchBtnSelector = ".search button";
 const searchBtn = document.querySelector(searchBtnSelector);
 
-// updateWeather(Requests.apiSettings);
+updateWeather(Requests.apiSettings);
 
 // searchBox.addEventListener("change", ({ target }) => {});
 
