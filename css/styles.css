@@ -113,8 +113,13 @@ body {
 }
 
 .weather .weather-icon {
-  width: 10.625rem;
+  display: none;
+  width: 100%;
   font-size: 5rem;
+}
+
+.weather .weather-icon.active {
+  display: block;
 }
 
 .weather h1 {

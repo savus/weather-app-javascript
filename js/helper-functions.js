@@ -12,7 +12,8 @@ import {
 } from "./index.js";
 
 export const setActive = (target, selector = null) => {
-  const selectedElement = document.querySelector(`${selector}${active}`);
+  const selectedElement = document.querySelector(`${selector}.${active}`);
+  console.log(selectedElement);
   if (selectedElement !== null) removeActive(selectedElement);
   target.classList.add(active);
 };
@@ -26,9 +27,12 @@ export const removeActive = (element) => {
   element.classList.remove(active);
 };
 
-export const getWeatherIcon = (status) => {
-  if (!weatherIcons[status]) weatherIcons[status] = "fa-sun";
-  return weatherIcons[status];
+export const setWeatherIcon = (status) => {
+  const iconSelector = !weatherIcons[status]
+    ? `.icon-sun`
+    : `.${weatherIcons[status]}`;
+  console.log(iconSelector, document.querySelector(iconSelector));
+  setActive(document.querySelector(iconSelector), `.weather-icon`);
 };
 
 export const clearWeatherIcons = () => {
@@ -55,12 +59,11 @@ export const updateDataFields = (data, settings) => {
   const tempUnit = settings.units === "imperial" ? "F" : "C";
   const speedUnit = settings.units === "imperial" ? "mph" : "km/h";
 
-  console.log(icon);
+  console.log(main);
   setActive(weatherContainer);
   removeActive(cityNameErrorMessage);
 
-  // updateUnitsDisplay(settings);
-
+  setWeatherIcon(main);
   cityDisplay.innerHTML = `${name}, ${country}`;
   tempDisplay.innerHTML = `${Math.round(temp)}°${tempUnit}`;
   humidityDisplay.innerHTML = `${humidity}%`;

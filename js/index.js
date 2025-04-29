@@ -3,10 +3,12 @@ import {} from "./click-functions.js";
 import { updateWeather } from "./helper-functions.js";
 
 export const active = "active";
+
 export const weatherIcons = {
-  Rain: "fa-cloud-rain",
-  Clouds: "fa-cloud",
-  Clear: "fa-sun",
+  Rain: "icon-rain",
+  Clouds: "icon-cloud",
+  Clear: "icon-sun",
+  Snow: "icon-snow",
 };
 
 const weatherContainerSelector = ".weather";
