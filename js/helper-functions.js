@@ -47,27 +47,24 @@ export const updateDataFields = (data, settings) => {
   const {
     name,
     main: { temp, humidity },
+    sys: { country },
     wind: { speed },
-    weather: [{ main, description }],
+    weather: [{ main, description, icon }],
   } = data;
 
   const tempUnit = settings.units === "imperial" ? "F" : "C";
   const speedUnit = settings.units === "imperial" ? "mph" : "km/h";
-  const iconClass = getWeatherIcon(main);
 
-  console.log(main, iconClass);
+  console.log(icon);
   setActive(weatherContainer);
   removeActive(cityNameErrorMessage);
 
   // updateUnitsDisplay(settings);
 
-  cityDisplay.innerHTML = name;
+  cityDisplay.innerHTML = `${name}, ${country}`;
   tempDisplay.innerHTML = `${Math.round(temp)}°${tempUnit}`;
   humidityDisplay.innerHTML = `${humidity}%`;
   windDisplay.innerHTML = `${speed} ${speedUnit}`;
-
-  clearWeatherIcons();
-  weatherIcon.classList.add(iconClass);
 };
 
 export async function updateWeather(settings) {

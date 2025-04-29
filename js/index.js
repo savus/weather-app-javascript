@@ -13,11 +13,12 @@ const weatherContainerSelector = ".weather";
 export const weatherContainer = document.querySelector(
   weatherContainerSelector
 );
+
 export const cityDisplay = document.querySelector(".city");
 export const tempDisplay = document.querySelector(".temp");
 export const humidityDisplay = document.querySelector(".humidity");
 export const windDisplay = document.querySelector(".wind");
-export const weatherIcon = document.querySelector(".weather-icon");
+export const weatherIcon = document.querySelector("#weather-icon");
 
 // const unitContainerSelector = ".units-selection-container";
 // export const unitSelectionContainer = document.querySelector(
@@ -39,7 +40,7 @@ updateWeather(Requests.apiSettings);
 
 // searchBox.addEventListener("change", ({ target }) => {});
 
-// searchBtn.addEventListener("click", fetchByCityName);
+searchBtn.addEventListener("click", Requests.fetchByCityName);
 
 // unitSelectionContainer.addEventListener("click", toggleUnitsContainer);
 

@@ -1,9 +1,5 @@
 import Requests from "./api.js";
-import { toggleActive, updateWeather } from "./helper-functions.js";
-
-export const toggleUnitsContainer = ({ target }) => {
-  toggleActive(target);
-};
+import { updateWeather } from "./helper-functions.js";
 
 export const fetchByUnitOption = ({ target }) => {
   const isOption = target.dataset.option;
