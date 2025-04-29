@@ -204,13 +204,20 @@ body {
   font-size: var(--size-30);
 }
 
-@media (max-width: 450px) {
+@media (max-width: 480px) {
   .search input {
     width: 100%;
   }
   .search,
   .details {
     flex-direction: column;
+  }
+
+  .search {
+    gap: var(--size-10);
+  }
+
+  .details {
     gap: var(--size-25);
   }
 }
