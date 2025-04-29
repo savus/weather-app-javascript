@@ -1,16 +1,5 @@
 import Requests from "./api.js";
-import {
-  removeActive,
-  toggleActive,
-  updateWeather,
-} from "./helper-functions.js";
-import { searchBox } from "./index.js";
-
-export const fetchByCityName = () => {
-  console.log("success");
-  Requests.setApiSettings({ cityName: searchBox.value });
-  updateWeather(Requests.apiSettings);
-};
+import { toggleActive, updateWeather } from "./helper-functions.js";
 
 export const toggleUnitsContainer = ({ target }) => {
   toggleActive(target);
@@ -19,7 +8,7 @@ export const toggleUnitsContainer = ({ target }) => {
 export const fetchByUnitOption = ({ target }) => {
   const isOption = target.dataset.option;
   if (isOption) {
-    Requests.apiSettings.units = target.dataset.option;
+    Requests.setApiSettings({ units: target.dataset.option });
     updateWeather(Requests.apiSettings);
   }
 };

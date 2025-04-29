@@ -31,6 +31,12 @@ body {
     var(--gradient1),
     var(--gradient2)
   );
+  font-family: raleway, sans-serif;
+  background-image: url("../images/daoudi-aissa-Pe1Ol9oLc4o-unsplash.jpg");
+  object-fit: cover;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .card {
@@ -42,15 +48,15 @@ body {
   padding: var(--size-40) var(--size-35);
   border-radius: var(--size-20);
   text-align: center;
-  font-family: raleway, sans-serif;
   font-weight: 200;
+  background: rgba(0, 0, 0, 0.8);
 }
 
 .card .search {
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 .card .search input {
@@ -67,7 +73,7 @@ body {
 .card .search button {
   border: 0;
   outline: 0;
-  background: #ebfffc;
+  background: #fff;
 }
 
 .card .search button {
@@ -77,8 +83,8 @@ body {
   cursor: pointer;
 }
 
-.card .search button i {
-  width: 1rem;
+.card .search button svg {
+  font-size: var(--size-30);
 }
 
 .error-message {

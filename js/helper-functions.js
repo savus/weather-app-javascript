@@ -71,10 +71,9 @@ export const updateDataFields = (data, settings) => {
 };
 
 export async function updateWeather(settings) {
-  Requests.setCurrentWeatherUrl(settings);
   let currentWeatherData;
   try {
-    currentWeatherData = await Requests.fetchCurrentWeather();
+    currentWeatherData = await Requests.fetchCurrentWeather(settings);
     if (currentWeatherData.cod === 200) {
       updateDataFields(currentWeatherData, settings);
     } else {
