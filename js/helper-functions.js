@@ -3,7 +3,11 @@ import {
   active,
   cityDisplay,
   cityNameErrorMessage,
+  descriptionDisplay,
+  feelsLike,
+  highTemp,
   humidityDisplay,
+  lowTemp,
   tempDisplay,
   weatherContainer,
   weatherIcon,
@@ -31,26 +35,13 @@ export const setWeatherIcon = (status) => {
   const iconSelector = !weatherIcons[status]
     ? `.icon-sun`
     : `.${weatherIcons[status]}`;
-  console.log(iconSelector, document.querySelector(iconSelector));
   setActive(document.querySelector(iconSelector), `.weather-icon`);
 };
-
-export const clearWeatherIcons = () => {
-  Object.values(weatherIcons).forEach((string) => {
-    if (weatherIcon.classList.contains(string))
-      weatherIcon.classList.remove(string);
-  });
-};
-
-// export const updateUnitsDisplay = ({ units }) =>
-//   (unitsDisplay.innerHTML = `Units: ${
-//     units.slice(0, 1).toUpperCase() + units.slice(1)
-//   }`);
 
 export const updateDataFields = (data, settings) => {
   const {
     name,
-    main: { temp, humidity },
+    main: { temp, humidity, feels_like, temp_max, temp_min },
     sys: { country },
     wind: { speed },
     weather: [{ main, description, icon }],
@@ -59,7 +50,7 @@ export const updateDataFields = (data, settings) => {
   const tempUnit = settings.units === "imperial" ? "F" : "C";
   const speedUnit = settings.units === "imperial" ? "mph" : "km/h";
 
-  console.log(main);
+  console.log(data);
   setActive(weatherContainer);
   removeActive(cityNameErrorMessage);
 
@@ -68,6 +59,10 @@ export const updateDataFields = (data, settings) => {
   tempDisplay.innerHTML = `${Math.round(temp)}°${tempUnit}`;
   humidityDisplay.innerHTML = `${humidity}%`;
   windDisplay.innerHTML = `${speed} ${speedUnit}`;
+  feelsLike.innerHTML = `Feels Like: ${Math.round(feels_like)}°${tempUnit}`;
+  highTemp.innerHTML = `High: ${Math.round(temp_max)}°${tempUnit}`;
+  lowTemp.innerHTML = `Low: ${Math.round(temp_min)}°${tempUnit}`;
+  descriptionDisplay.innerHTML = `${description}`;
 };
 
 export async function updateWeather(settings) {

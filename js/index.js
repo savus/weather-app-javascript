@@ -21,6 +21,10 @@ export const tempDisplay = document.querySelector(".temp");
 export const humidityDisplay = document.querySelector(".humidity");
 export const windDisplay = document.querySelector(".wind");
 export const weatherIcon = document.querySelector("#weather-icon");
+export const feelsLike = document.querySelector(".feels-like");
+export const highTemp = document.querySelector(".high-temp");
+export const lowTemp = document.querySelector(".low-temp");
+export const descriptionDisplay = document.querySelector(".description");
 
 // const unitContainerSelector = ".units-selection-container";
 // export const unitSelectionContainer = document.querySelector(
