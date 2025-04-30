@@ -227,6 +227,11 @@ button {
   font-size: var(--size-30);
 }
 
+.weather [data-animation="bounceIn"] {
+  transform: scale(0);
+  animation: bounceIn 1s forwards ease-in-out;
+}
+
 @media (max-width: 485px) {
   .search input {
     width: 100%;
@@ -242,5 +247,25 @@ button {
 
   .details {
     gap: var(--size-25);
+  }
+}
+
+@keyframes bounceIn {
+  0% {
+    transform: scale(0, 0);
+  }
+  50% {
+    transform: scale(1.5, 1);
+  }
+  75% {
+    transform: scale(0.8, 1);
+  }
+
+  85% {
+    transform: scale(1.1, 1);
+  }
+
+  100% {
+    transform: scale(1);
   }
 }
