@@ -5,7 +5,7 @@ const apiKey = `34b0eca3b26480797180859fc2e45272`;
 
 const apiSettings = {
   cityName: "bangalore",
-  units: "metric",
+  units: "imperial",
 };
 
 const setApiSettings = (settings) => {

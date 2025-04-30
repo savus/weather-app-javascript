@@ -1,7 +1,6 @@
 import Requests from "./api.js";
-import {} from "./click-functions.js";
-import { updateWeather } from "./helper-functions.js";
-import Images from "./images.js";
+import { setUnitOption } from "./click-functions.js";
+import { setActive, updateWeather } from "./helper-functions.js";
 
 export const active = "active";
 
@@ -34,10 +33,15 @@ export const searchBox = document.querySelector(searchBoxSelector);
 const searchBtnSelector = ".search button";
 const searchBtn = document.querySelector(searchBtnSelector);
 
+const unitsSelectionSelector = ".units-selection";
+const unitsSelection = document.querySelector(unitsSelectionSelector);
+
 updateWeather(Requests.apiSettings);
 
 searchBox.addEventListener("keyup", (e) => {
   if (e.key === "Enter") Requests.fetchByCityName();
 });
+
+unitsSelection.addEventListener("click", setUnitOption);
 
 searchBtn.addEventListener("click", Requests.fetchByCityName);
