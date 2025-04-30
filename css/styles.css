@@ -22,20 +22,10 @@
 }
 
 body {
-  background: #43b4e0;
-  --gradient1: rgba(67, 180, 224, 1);
-  --gradient2: rgba(11, 18, 122, 1);
-  --gradient-deg: 90deg;
-  background: linear-gradient(
-    var(--gradient-deg),
-    var(--gradient1),
-    var(--gradient2)
-  );
+  background: #222;
   font-family: raleway, sans-serif;
-  background-image: url("../images/daoudi-aissa-Pe1Ol9oLc4o-unsplash.jpg");
-  object-fit: cover;
-  background-position: center;
   background-size: cover;
+  background-position: center;
   background-repeat: no-repeat;
 }
 
@@ -115,7 +105,7 @@ body {
 .weather .weather-icon {
   display: none;
   width: 100%;
-  font-size: 5rem;
+  font-size: 7rem;
 }
 
 .weather .weather-icon.active {
@@ -131,12 +121,12 @@ body {
 }
 
 .weather .temp {
-  margin-top: calc(var(--size-10) * -1);
   margin-bottom: var(--size-10);
   font-weight: normal;
   display: flex;
   justify-content: center;
   align-items: center;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .weather,
@@ -144,8 +134,7 @@ body {
   text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.6);
 }
 
-.weather .temp,
-.weather .weather-icon {
+.weather .temp {
   font-size: 5rem;
 }
 
@@ -204,7 +193,7 @@ body {
   font-size: var(--size-30);
 }
 
-@media (max-width: 480px) {
+@media (max-width: 485px) {
   .search input {
     width: 100%;
   }

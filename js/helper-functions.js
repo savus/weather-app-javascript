@@ -1,4 +1,5 @@
 import Requests from "./api.js";
+import Images from "./images.js";
 import {
   active,
   cityDisplay,
@@ -10,14 +11,12 @@ import {
   lowTemp,
   tempDisplay,
   weatherContainer,
-  weatherIcon,
   weatherIcons,
   windDisplay,
 } from "./index.js";
 
 export const setActive = (target, selector = null) => {
   const selectedElement = document.querySelector(`${selector}.${active}`);
-  console.log(selectedElement);
   if (selectedElement !== null) removeActive(selectedElement);
   target.classList.add(active);
 };
@@ -38,6 +37,10 @@ export const setWeatherIcon = (status) => {
   setActive(document.querySelector(iconSelector), `.weather-icon`);
 };
 
+export const setBackgroundImage = (status) => {
+  document.body.style.backgroundImage = `url("${Images[status]}")`;
+};
+
 export const updateDataFields = (data, settings) => {
   const {
     name,
@@ -51,6 +54,8 @@ export const updateDataFields = (data, settings) => {
   const speedUnit = settings.units === "imperial" ? "mph" : "km/h";
 
   console.log(data);
+
+  setBackgroundImage(main);
   setActive(weatherContainer);
   removeActive(cityNameErrorMessage);
 

@@ -1,6 +1,7 @@
 import Requests from "./api.js";
 import {} from "./click-functions.js";
 import { updateWeather } from "./helper-functions.js";
+import Images from "./images.js";
 
 export const active = "active";
 
@@ -26,15 +27,6 @@ export const highTemp = document.querySelector(".high-temp");
 export const lowTemp = document.querySelector(".low-temp");
 export const descriptionDisplay = document.querySelector(".description");
 
-// const unitContainerSelector = ".units-selection-container";
-// export const unitSelectionContainer = document.querySelector(
-//   unitContainerSelector
-// );
-// const unitSelectionSelector = ".units-selection";
-// const unitSelectionOptions = document.querySelector(unitSelectionSelector);
-// const unitsDisplaySelector = ".units-display";
-// export const unitsDisplay = document.querySelector(unitsDisplaySelector);
-
 export const cityNameErrorMessage = document.querySelector(".city-error");
 
 const searchBoxSelector = ".search input";
@@ -44,12 +36,8 @@ const searchBtn = document.querySelector(searchBtnSelector);
 
 updateWeather(Requests.apiSettings);
 
-// searchBox.addEventListener("change", ({ target }) => {});
+searchBox.addEventListener("keyup", (e) => {
+  if (e.key === "Enter") Requests.fetchByCityName();
+});
 
 searchBtn.addEventListener("click", Requests.fetchByCityName);
-
-// unitSelectionContainer.addEventListener("click", toggleUnitsContainer);
-
-// unitSelectionOptions.addEventListener("click", fetchByUnitOption);
-
-// document.addEventListener("click", removeActiveOnBlur);
