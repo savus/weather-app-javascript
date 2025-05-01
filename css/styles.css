@@ -45,74 +45,6 @@ button {
   height: 100vh;
 }
 
-.card {
-  border: 1px solid #fff;
-  width: 90%;
-  max-width: 40rem;
-  color: #fff;
-  margin: 0 auto;
-  padding: var(--size-40) var(--size-35) var(--size-40) var(--size-35);
-  border-radius: var(--size-20);
-  text-align: center;
-  font-weight: 200;
-  background: rgba(0, 0, 0, 0.8);
-  position: relative;
-}
-
-.card .search {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-}
-
-.card .search input {
-  color: #555;
-  padding: var(--size-10) var(--size-25);
-  height: var(--size-60);
-  border-radius: var(--size-30);
-  flex: 1;
-  margin-right: 1rem;
-  font-size: var(--size-18);
-}
-
-.card .search input,
-.card .search button {
-  border: 0;
-  outline: 0;
-  background: #fff;
-}
-
-.card .search button {
-  border-radius: 50%;
-  width: var(--size-60);
-  height: var(--size-60);
-  cursor: pointer;
-}
-
-.card .search button svg {
-  font-size: var(--size-30);
-}
-
-.weather {
-  display: none;
-  flex-direction: column;
-  align-items: center;
-  padding-top: var(--size-18);
-}
-
-.weather.active {
-  display: flex;
-}
-
-.weather.active [data-animation="bounceIn"] {
-  --animName: bounceIn;
-  --animDel: 0s;
-  --animDir: forwards;
-  --animDur: 0.3s;
-  transform: scale(0);
-}
-
 .error-message {
   display: none;
   color: #ffffff;
@@ -128,185 +60,19 @@ button {
   display: block;
 }
 
-.weather .weather-icon {
-  display: none;
-  width: 100%;
-  font-size: 7rem;
-}
-
-.weather .weather-icon.active {
-  --index: 0.1s;
-  display: block;
-}
-
-.weather h1 {
-  --index: 0.15s;
-  font-weight: 700;
-  position: relative;
-  font-size: 3rem;
-  font-weight: 300;
-}
-
-.weather .temp {
-  --index: 0.25s;
-  margin-bottom: var(--size-10);
-  font-weight: normal;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-.weather,
-.weather .temp-range {
-  text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.6);
-}
-
-.weather .temp {
-  font-size: 5rem;
-}
-
-.weather .temp span {
-  font-size: var(--size-30);
-}
-
-.weather .temp-details {
-  display: flex;
-  flex-direction: column;
-  font-weight: 400;
-  letter-spacing: 0.8px;
-  gap: 0.3125rem;
-}
-
-.weather .temp-range {
-  display: flex;
-  gap: var(--size-30);
-  justify-content: center;
-}
-
-.weather .temp-details,
-.weather .details {
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-.weather .feels-like {
-  --index: 0.35s;
-}
-
-.weather .high-temp {
-  --index: 0.45s;
-}
-
-.weather .low-temp {
-  --index: 0.55s;
-}
-
-.weather .description {
-  --index: 0.65s;
-}
-
-.weather .units-selection {
-  display: flex;
-  border: 1px solid #fff;
-  margin-top: var(--size-25);
-  overflow: hidden;
-  border-radius: 20px;
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-.weather .units-selection .unit-option {
-  padding: var(--size-10) var(--size-30);
-  cursor: pointer;
-}
-
-.weather .units-selection .unit-option.active {
-  background-color: #fff;
-  color: #000;
-}
-
-#imperial {
-  border-right: 1px solid #fff;
-}
-
-.details {
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  padding-top: var(--size-18);
-  width: 100%;
-  margin: auto 0;
-}
-
-.col {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: left;
-  width: 100%;
-}
-
-.col > div {
-  display: flex;
-  flex-wrap: nowrap;
-}
-
-.col i {
-  margin-right: var(--size-10);
-  font-size: var(--size-40);
-}
-
-.humidity,
-.wind {
-  font-size: var(--size-30);
-}
-
-.left {
-  --index: 0.75s;
-}
-
-.right {
-  --index: 0.85s;
-}
-
 [data-animation] {
   animation: var(--animName) var(--animDur) var(--animDir)
     calc(var(--animDel) + var(--index, 0s));
 }
 
-@media (max-width: 485px) {
-  .search input {
-    width: 100%;
-  }
-  .search,
-  .details {
-    flex-direction: column;
-  }
-
-  .search {
-    gap: var(--size-10);
-  }
-
-  .details {
-    gap: var(--size-25);
-  }
-}
-
 @keyframes bounceIn {
   0% {
-    transform: scale(0, 0);
+    transform: translate(-50%, 0);
+    opacity: 0;
   }
-  40% {
-    transform: scale(1.5, 1);
-  }
-  50% {
-    transform: scale(0.8, 1);
-  }
-
-  75% {
-    transform: scale(1.1, 1);
-  }
-
+  50%,
   100% {
-    transform: scale(1);
+    transform: translate(0, 0);
+    opacity: 1;
   }
 }
