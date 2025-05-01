@@ -4,6 +4,9 @@ import { setActive, updateWeather } from "./helper-functions.js";
 
 export const active = "active";
 
+export const bgImage = document.querySelector(".bg-image");
+console.log(bgImage);
+
 export const weatherIcons = {
   Rain: "icon-rain",
   Clouds: "icon-cloud",
@@ -25,6 +28,10 @@ export const feelsLike = document.querySelector(".feels-like");
 export const highTemp = document.querySelector(".high-temp");
 export const lowTemp = document.querySelector(".low-temp");
 export const descriptionDisplay = document.querySelector(".description");
+
+export const getAllBounceInAnimations = document.querySelectorAll(
+  `[data-animation="bounceIn"]`
+);
 
 export const cityNameErrorMessage = document.querySelector(".city-error");
 

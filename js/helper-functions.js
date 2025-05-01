@@ -2,10 +2,12 @@ import Requests from "./api.js";
 import Images from "./images.js";
 import {
   active,
+  bgImage,
   cityDisplay,
   cityNameErrorMessage,
   descriptionDisplay,
   feelsLike,
+  getAllBounceInAnimations,
   highTemp,
   humidityDisplay,
   lowTemp,
@@ -38,10 +40,18 @@ export const setWeatherIcon = (status) => {
 };
 
 export const setBackgroundImage = (status) => {
-  document.body.style.backgroundImage = `url("${Images[status]}")`;
+  bgImage.style.backgroundImage = `url("${Images[status]}")`;
 };
 
-export const updateDataFields = (data, settings) => {
+const resetBounceInAnimations = () => {
+  getAllBounceInAnimations.forEach((elem) => {
+    elem.removeAttribute("data-animation");
+    void elem.offsetWidth;
+    elem.setAttribute("data-animation", "bounceIn");
+  });
+};
+
+export const updateDataFields = async (data, settings) => {
   const {
     name,
     main: { temp, humidity, feels_like, temp_max, temp_min },
@@ -56,6 +66,7 @@ export const updateDataFields = (data, settings) => {
   console.log(data);
 
   setBackgroundImage(main);
+  resetBounceInAnimations();
   setActive(weatherContainer);
   removeActive(cityNameErrorMessage);
 
