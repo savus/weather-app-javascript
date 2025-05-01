@@ -12,7 +12,10 @@ export const weatherIcons = {
   Clouds: "icon-cloud",
   Clear: "icon-sun",
   Snow: "icon-snow",
+  //Haze
 };
+
+//NOTES - BUGS - SEARCH ICON MOBILE RESPONSIVE
 
 const weatherContainerSelector = ".weather";
 export const weatherContainer = document.querySelector(

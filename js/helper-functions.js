@@ -65,12 +65,12 @@ export const updateDataFields = async (data, settings) => {
 
   console.log(data);
 
-  setBackgroundImage(main);
+  setBackgroundImage("Snow");
   resetBounceInAnimations();
   setActive(weatherContainer);
   removeActive(cityNameErrorMessage);
 
-  setWeatherIcon(main);
+  setWeatherIcon("Snow");
   cityDisplay.innerHTML = `${name}, ${country}`;
   tempDisplay.innerHTML = `${Math.round(temp)}°${tempUnit}`;
   humidityDisplay.innerHTML = `${humidity}%`;
