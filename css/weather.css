@@ -11,7 +11,7 @@
 
 .weather.active [data-animation="bounceIn"] {
   opacity: 0;
-  transform: translate(-50%, 0);
+  transform: translate(0, -50%);
   --animName: bounceIn;
   --animDel: 0s;
   --animDir: forwards;

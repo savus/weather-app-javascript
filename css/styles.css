@@ -67,7 +67,7 @@ button {
 
 @keyframes bounceIn {
   0% {
-    transform: translate(-50%, 0);
+    transform: translate(0, -50%);
     opacity: 0;
   }
   50%,
