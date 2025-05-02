@@ -13,8 +13,6 @@ for (const [status, _url] of Object.entries(Images)) {
   weatherIcons[status] = `icon-${status.toLowerCase()}`;
 }
 
-//NOTES - BUGS - SEARCH ICON MOBILE RESPONSIVE
-
 const weatherContainerSelector = ".weather";
 export const weatherContainer = document.querySelector(
   weatherContainerSelector

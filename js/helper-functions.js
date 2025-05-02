@@ -71,7 +71,7 @@ export const updateDataFields = async (data, settings) => {
   removeActive(cityNameErrorMessage);
 
   setWeatherIcon(main);
-  cityDisplay.innerHTML = `${name}, ${country}`;
+  cityDisplay.innerHTML = `${name}, ${!country ? "" : country}`;
   tempDisplay.innerHTML = `${Math.round(temp)}°${tempUnit}`;
   humidityDisplay.innerHTML = `${humidity}%`;
   windDisplay.innerHTML = `${speed} ${speedUnit}`;
