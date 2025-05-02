@@ -13,7 +13,6 @@
 }
 
 .card .search {
-  width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -27,6 +26,7 @@
   flex: 1;
   margin-right: 1rem;
   font-size: var(--size-18);
+  width: 100%;
 }
 
 .card .search input,
@@ -45,4 +45,16 @@
 
 .card .search button svg {
   font-size: var(--size-30);
+}
+
+@media (max-width: 485px) {
+  .card .search {
+    flex-direction: column;
+    gap: var(--size-10);
+  }
+
+  .card .search input {
+    font-size: var(--size-20);
+    padding: var(--size-20);
+  }
 }

@@ -57,7 +57,7 @@
 }
 
 .weather .temp span {
-  font-size: va r(--size-30);
+  font-size: var(--size-30);
 }
 
 .weather .temp-details {
@@ -159,16 +159,12 @@
 }
 
 @media (max-width: 485px) {
-  .weather .search input {
+  .weather {
     width: 100%;
   }
-  .weather .search,
+
   .weather .details {
     flex-direction: column;
-  }
-
-  .weather .search {
-    gap: var(--size-10);
   }
 
   .weather .details {

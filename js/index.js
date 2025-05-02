@@ -1,19 +1,17 @@
 import Requests from "./api.js";
 import { setUnitOption } from "./click-functions.js";
-import { setActive, updateWeather } from "./helper-functions.js";
+import { updateWeather } from "./helper-functions.js";
+import Images from "./images.js";
 
 export const active = "active";
 
 export const bgImage = document.querySelector(".bg-image");
-console.log(bgImage);
 
-export const weatherIcons = {
-  Rain: "icon-rain",
-  Clouds: "icon-cloud",
-  Clear: "icon-sun",
-  Snow: "icon-snow",
-  //Haze
-};
+export const weatherIcons = {};
+
+for (const [status, _url] of Object.entries(Images)) {
+  weatherIcons[status] = `icon-${status.toLowerCase()}`;
+}
 
 //NOTES - BUGS - SEARCH ICON MOBILE RESPONSIVE
 
