@@ -1,6 +1,6 @@
 import Requests from "./api.js";
 import { setUnitOption } from "./click-functions.js";
-import { updateWeather } from "./helper-functions.js";
+import { setActive, updateWeather } from "./helper-functions.js";
 import Images from "./images.js";
 
 export const active = "active";
@@ -33,6 +33,7 @@ export const getAllBounceInAnimations = document.querySelectorAll(
 );
 
 export const cityNameErrorMessage = document.querySelector(".city-error");
+export const loader = document.querySelector(".loader");
 
 const searchBoxSelector = ".search input";
 export const searchBox = document.querySelector(searchBoxSelector);

@@ -10,6 +10,7 @@ import {
   getAllBounceInAnimations,
   highTemp,
   humidityDisplay,
+  loader,
   lowTemp,
   tempDisplay,
   weatherContainer,
@@ -83,6 +84,7 @@ export const updateDataFields = async (data, settings) => {
 
 export async function updateWeather(settings) {
   let currentWeatherData;
+  setActive(loader);
   try {
     currentWeatherData = await Requests.fetchCurrentWeather(settings);
     if (currentWeatherData.cod === 200) {
@@ -96,4 +98,5 @@ export async function updateWeather(settings) {
     console.log(e);
     removeActive(weatherContainer);
   }
+  removeActive(loader);
 }
