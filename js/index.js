@@ -5,8 +5,6 @@ import Images from "./images.js";
 
 export const active = "active";
 
-export const bgImage = document.querySelector(".bg-image");
-
 export const weatherIcons = {};
 
 for (const [status, _url] of Object.entries(Images)) {

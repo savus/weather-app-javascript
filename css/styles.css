@@ -21,11 +21,17 @@
   src: url("../fonts/Raleway/Raleway-VariableFont_wght.ttf");
 }
 
+html,
+body {
+  height: 100%;
+}
+
 body {
   font-family: raleway, sans-serif;
-  height: 100vh;
-  width: 100vw;
   background: #222;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 ul {
@@ -36,13 +42,6 @@ button {
   outline: none;
   border: none;
   display: inline-block;
-}
-
-.bg-image {
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  height: 100vh;
 }
 
 .error-message {

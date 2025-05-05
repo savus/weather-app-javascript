@@ -2,7 +2,6 @@ import Requests from "./api.js";
 import Images from "./images.js";
 import {
   active,
-  bgImage,
   cityDisplay,
   cityNameErrorMessage,
   descriptionDisplay,
@@ -41,7 +40,7 @@ export const setWeatherIcon = (status) => {
 };
 
 export const setBackgroundImage = (status) => {
-  bgImage.style.backgroundImage = `url("${Images[status]}")`;
+  document.body.style.backgroundImage = `url("${Images[status]}")`;
 };
 
 const resetBounceInAnimations = () => {
